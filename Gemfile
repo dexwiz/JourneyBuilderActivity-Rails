@@ -41,3 +41,6 @@ end
 
 # Heroku 
 gem 'rails_12factor', group: :production
+
+# Serve static assets for heroku
+gem 'rails_serve_static_assets' 
