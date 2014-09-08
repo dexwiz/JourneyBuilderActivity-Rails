@@ -11,4 +11,5 @@ JbMeltwater::Application.routes.draw do
   post 'activity/validate' => 'activity#validate'
   get 'activity' => 'activity#edit'
   get 'activity/index' => 'activity#edit'
+  get 'activity/edit' => 'activity#edit'
 end

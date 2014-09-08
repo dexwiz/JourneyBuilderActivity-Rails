@@ -1,0 +1,137 @@
+<div id="step1" class="step">
+	Select one: <br>
+	<select id="select1">
+	    <option value="foo">Foo</option>
+	    <option value="bar">Bar</option>
+	</select>
+</div>
+<div id="step2" class="step">
+	Another page
+</div>
+
+
+<script>
+
+    var connection = new Postmonger.Session();
+	var tokens;
+	var endpoints;
+	var toJbPayload = {};
+	var step = 1;
+
+    $(window).ready(function() {
+        connection.trigger('ready');
+		//connection.trigger('requestTokens');
+		//connection.trigger('requestEndpoints');
+    })
+
+
+	connection.on('initActivity', function(payload) {
+		console.log('init activity');
+		console.log(payload);
+		if (payload) {
+            toJbPayload = payload;
+        }     
+		gotoStep(1);
+    });
+    
+    connection.on('initConfig', function(payload) {
+    	//not ran
+		console.log('init config');
+		console.log(payload);
+		if (payload) {
+            toJbPayload = payload;
+        }     
+		gotoStep(1);
+    });
+   
+	connection.on('requestedTokens', function( data ) {
+		if( data.error ) {
+			console.error( data.error );
+		} else {
+			tokens = data;
+		}
+	});
+	
+	connection.on('requestedEndpoints', function( data ) {
+		if( data.error ) {
+			console.error( data.error );
+		} else {
+			endpoints = data;
+		}
+	});
+
+    connection.on('populateFields', function(payload) {
+    });
+    
+        connection.on('clickedNext', function() {
+        step++;
+        gotoStep(step);
+        connection.trigger('ready');
+    });
+
+    connection.on('clickedBack', function() {
+        step--;
+        gotoStep(step);
+        connection.trigger('ready');
+    });
+    
+    function gotoStep(step) {
+        $('.step').hide();
+        switch(step) {
+            case 1:
+                $('#step1').show();
+                connection.trigger('updateButton', { button: 'back', visible: false});
+				connection.trigger('updateButton', { button: 'next', text: 'next'});
+                break;
+            case 2:
+                $('#step2').show();
+                connection.trigger('updateButton', { button: 'back', visible: true});
+				connection.trigger('updateButton', { button: 'next', text: 'done', visible: true});
+                break;
+            case 3: // Only 2 steps, so the equivalent of 'done' - send off the payload
+                save();
+                break;
+        }
+    }
+    
+    
+    function save() {
+    	//toJbPayload['arguments'] = toJbPayload['arguments'] || {};
+    	//toJbPayload['configurationArguments'] = toJbPayload['configurationArguments'] || {};
+    	//toJbPayload['metaData'] = toJbPayload['metaData'] || {};
+		toJbPayload['metaData'].isConfigured  = true;
+		toJbPayload['configurationArguments'].applicationExtensionKey = "awagonerCatsEye";
+		toJbPayload['configurationArguments'].applicationExtensionEndpointUrl = "https://damp-castle-6031.herokuapp.com/activity";
+		//toJbPayload['lang'] = toJbPayload['lang'] || {};
+		//toJbPayload['edit'] = toJbPayload['edit'] || {};
+		//toJbPayload.workflowApiVersion = 'REST';
+		//toJbPayload.type = '1.0';
+		//toJbPayload['arguments'].execute.inArguments.message = $("#select1").val();
+		//toJbPayload['metaData'].icon = '../jb-icon2.png';
+		console.log(toJbPayload);
+		//connection.trigger('getPayload', toJbPayload);
+        //connection.trigger('updateTrigger', toJbPayload);
+        connection.trigger('updateActivity', toJbPayload);
+        //connection.trigger('updateActivity');
+        //connection.trigger('updateTrigger');
+    }
+
+</script>
+
+<!--
+Postmonger Broadcasts these events
+
+initConfig
+requestedTokens
+requestedEndpoints
+clickedNext
+clickedBack
+Postmonger Listens for these events
+
+ready
+requestTokens
+requestEndpoints
+updateButton
+updateTrigger
+-->
+
