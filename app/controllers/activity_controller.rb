@@ -1,4 +1,5 @@
 class ActivityController < ApplicationController
+  after_action :allow_iframe
   
   def configuration
 	#Prevents JB from requesting legacy config.json file
@@ -33,4 +34,9 @@ class ActivityController < ApplicationController
   
   def edit
   end
+  
+ private
+	def allow_iframe
+		response.headers.except! 'X-Frame-Options'
+	end
 end
