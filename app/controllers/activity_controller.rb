@@ -1,10 +1,10 @@
 class ActivityController < ApplicationController
   
   def configuration
-    @host = request.host
-	
 	#Prevents JB from requesting legacy config.json file
 	if params['format'] == 'js' then
+		@host = request.host
+	    response.headers["X-Frame-Options"] = "ALLOWALL"
 		render "config"
 	else
 		render :nothing => true, :status => :service_unavailable
