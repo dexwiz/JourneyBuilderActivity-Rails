@@ -1,11 +1,5 @@
 JbMeltwater::Application.configure do
 
-  # gets environment config variables
-  env_file = File.join(Rails.root, 'config', 'local_env.yml')
-  YAML.load(File.open(env_file)).each do |key, value|
-    ENV[key.to_s] = value
-  end if File.exists?(env_file)
-
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on

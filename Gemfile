@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Set environment variables to mirror Heroku
+gem 'dotenv-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
@@ -29,14 +32,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
 
 # Heroku 
 gem 'rails_12factor', group: :production
-
-# Set environment variables to mirror Heroku
-gem 'dotenv', group: [:development, :test]
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
