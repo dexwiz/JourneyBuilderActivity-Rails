@@ -5,7 +5,7 @@ class ActivityController < ApplicationController
 	#Prevents JB from requesting legacy config.json file
 	if params['format'] == 'js' then
 		@host = request.host
-		render "config"
+		render template: 'activity/config', layout: false
 	else
 		render :nothing => true, :status => :service_unavailable
 	end
