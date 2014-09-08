@@ -5,7 +5,6 @@ class ActivityController < ApplicationController
 	#Prevents JB from requesting legacy config.json file
 	if params['format'] == 'js' then
 		@host = request.host
-	    response.headers["X-Frame-Options"] = "ALLOWALL"
 		render "config"
 	else
 		render :nothing => true, :status => :service_unavailable
@@ -37,6 +36,6 @@ class ActivityController < ApplicationController
   
  private
 	def allow_iframe
-		response.headers.except! 'X-Frame-Options'
+		response.headers['X-Frame-Options'] = 'ALLOWALL'
 	end
 end
