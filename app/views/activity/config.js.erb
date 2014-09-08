@@ -1,0 +1,61 @@
+define({
+    "workflowApiVersion": "1.0",
+    "metaData": {
+        "icon": "../jb-icon.png",
+        "iconSmall": "../jb-icon.png",
+        "category": "message",
+        "version": "1.0"
+    },
+    "type": "REST",
+    "lang": {
+        "en-US": {
+            "name": "Hello World Activity Rails",
+            "description": "Activity simply posts the data into an array for display on the App's home page."
+        }
+    },
+    "arguments": {
+        "execute": {
+			"inArguments": {},
+            "outArguments": {},
+            "url": "https://<%= @host %>/activity/execute",
+            "verb": "POST",
+            "body": "",
+            "header": "",
+            "format": "json",
+            "useJwt": false,
+            "timeout": 10000
+        }
+    },
+    "configurationArguments": {
+        "applicationExtensionKey": "awagonerCatsEye",
+        "save": {
+            "url": "https://<%= @host %>/activity/save",
+            "body": "",
+            "headers": "",
+            "verb": "POST",
+            "timeout": 3000,
+            "useJwt": false
+        },
+        "publish": {
+            "url": "https://<%= @host %>/activity/publish",
+            "verb": "POST",
+            "body": "",
+            "headers": "",
+            "timeout": 3000,
+            "useJwt": false
+        },
+        "validate": {
+            "url": "https://<%= @host %>/activity/validate",
+            "verb": "POST",
+            "body": "",
+            "headers": "",
+            "timeout": 3000,
+            "useJwt": false
+        }
+    },
+    "edit": {
+        "url": "https://<%= @host %>/activity/",
+        "height": 200,
+        "width": 300
+    }
+});
