@@ -15,7 +15,15 @@ class ActivityController < ApplicationController
   end
   
   def execute
-    logger.debug "Execution posted"
+    activity_log = ActivityLog.create do |a|
+			a.activity_instance_id = params['activityIntstanceId']
+			a.activity_object_id = params['activityObjectID']
+			a.contact_id = params['contactId']
+			a.contact_key = params['keyValue']
+			a.journey_id = params['journeyId']
+		end
+		logger.debug "Execution posted"
+		
     render nothing: true
   end
   

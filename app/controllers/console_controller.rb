@@ -1,6 +1,10 @@
 class ConsoleController < ApplicationController
   def index
   end
+	
+	def list
+		@logs = ActivityLog.all
+	end
   
   def fire
     
