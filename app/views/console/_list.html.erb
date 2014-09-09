@@ -1,4 +1,25 @@
-<% @logs.each do |l| %>
-	keyValue: <%= l.contact_key %><br>
-<% end %>
+<table class="table table-hover">
+	<thead>
+		
+		<td><b>ID</b></td>
+		<td><b>Activity Instance ID</td></b>
+		<td><b>Activity Object ID</td></b>
+		<td><b>Contact ID</td></b>
+		<td><b>Contact Key</td></b>
+
+	</thead>
+	<tbody>
+	<% @logs.each do |l| %>
+		<tr>
+			<td><%= l.id %></td>
+			<td><%= l.activity_instance_id %></td>
+			<td><%= l.activity_object_id %></td>
+			<td><%= l.contact_id %></td>
+			<td><%= l.contact_key %></td>
+		<tr>
+	<% end %>
+	</tbody>
+</table>
+
+
 	

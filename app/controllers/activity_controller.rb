@@ -20,7 +20,6 @@ class ActivityController < ApplicationController
 			a.activity_object_id = params['activityObjectID']
 			a.contact_id = params['contactId']
 			a.contact_key = params['keyValue']
-			a.journey_id = params['journeyId']
 		end
 		logger.debug "Execution posted"
 		

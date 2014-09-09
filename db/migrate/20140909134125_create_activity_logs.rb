@@ -5,7 +5,6 @@ class CreateActivityLogs < ActiveRecord::Migration
       t.string :activity_object_id
       t.decimal :contact_id, precision: 32, scale: 0
       t.string :contact_key
-      t.integer :jounrey_id
 			
       t.timestamps
     end

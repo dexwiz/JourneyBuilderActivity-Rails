@@ -1,10 +1,14 @@
 class ConsoleController < ApplicationController
   def index
-  end
-	
-	def list
+	  activity_log = ActivityLog.create do |a|
+			a.activity_instance_id = "aiID"
+			a.activity_object_id = "aoID"
+			a.contact_id = "cID"
+			a.contact_key = "cKey"
+		end
+
 		@logs = ActivityLog.all
-	end
+  end
   
   def fire
     

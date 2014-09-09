@@ -15,3 +15,4 @@
 //= require turbolinks
 //= require_tree .
 //= require postmonger
+//= require bootstrap-sprockets
