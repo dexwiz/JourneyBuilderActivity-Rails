@@ -99,21 +99,19 @@
     	//toJbPayload['arguments'] = toJbPayload['arguments'] || {};
     	//toJbPayload['configurationArguments'] = toJbPayload['configurationArguments'] || {};
     	//toJbPayload['metaData'] = toJbPayload['metaData'] || {};
-		toJbPayload['metaData'].isConfigured  = true;
-		toJbPayload['configurationArguments'].applicationExtensionKey = "awagonerCatsEye";
-		toJbPayload['configurationArguments'].applicationExtensionEndpointUrl = "https://damp-castle-6031.herokuapp.com/activity";
+		
+		//toJbPayload['configurationArguments'].applicationExtensionKey = "awagonerCatsEye";
+		//toJbPayload['configurationArguments'].applicationExtensionEndpointUrl = "https://damp-castle-6031.herokuapp.com/activity";
 		//toJbPayload['lang'] = toJbPayload['lang'] || {};
 		//toJbPayload['edit'] = toJbPayload['edit'] || {};
 		//toJbPayload.workflowApiVersion = 'REST';
 		//toJbPayload.type = '1.0';
 		//toJbPayload['arguments'].execute.inArguments.message = $("#select1").val();
 		//toJbPayload['metaData'].icon = '../jb-icon2.png';
+		
+		toJbPayload['metaData'].isConfigured  = true;
 		console.log(toJbPayload);
-		//connection.trigger('getPayload', toJbPayload);
-        //connection.trigger('updateTrigger', toJbPayload);
         connection.trigger('updateActivity', toJbPayload);
-        //connection.trigger('updateActivity');
-        //connection.trigger('updateTrigger');
     }
 
 </script>
