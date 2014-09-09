@@ -1,4 +1,7 @@
 class ActivityController < ApplicationController
+	#disables token authentication because its an API interaction
+	skip_before_filter  :verify_authenticity_token
+
   after_action :allow_iframe
   
   def configuration
