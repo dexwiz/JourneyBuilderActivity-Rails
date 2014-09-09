@@ -1,0 +1,7 @@
+<%= form_tag("fire", method: "post") do %>
+	<%= label_tag(:k, "Contactkey:") %>
+	<%= text_field_tag(:k) %>
+	<%= label_tag(:e, "Email Address:") %>
+	<%= text_field_tag(:e) %>
+	<%= submit_tag("Fire Event") %>
+<% end %>

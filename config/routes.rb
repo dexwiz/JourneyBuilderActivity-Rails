@@ -1,7 +1,8 @@
 JbMeltwater::Application.routes.draw do
-  
-  #env variables for testing
-  get 'console/env' => 'console#env'
+ 
+  #collect form and fire
+  get '/console' => 'console#index'
+  post '/console/fire' => 'console#fire'
   
   #activity
   get 'activity/config' => 'activity#configuration'
