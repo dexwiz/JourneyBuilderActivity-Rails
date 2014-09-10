@@ -1,28 +1,51 @@
-== README
+= Rails Custom Journey Builder Activity
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== Installation
 
-Things you may want to cover:
+Register an App through the App Center at code.exacttarget.com. Create a custom activity inside of the App. At this time ExactTarget, must enable your Code@ account to be able to access Custom Activities in the App Center.  
 
-* Ruby version
+Create a .env file in the root of the project to store configuration variables with the following:
 
-* System dependencies
+	CLIENT_ID=Client ID of your app
+	CLIENT_SECRET=Client Secret of your app
+	MASTER_DE_KEY=External Key for Master Data Extension
+	EVENT_DEFINITION_KEY=Event Definition Key for Trigger Event associated with the Interaction
+	
+For best results host the app on Heroku. If another host is used, it must be certified with an SSL cert. Not hosting on Heroku may result in a delay (~3 minutes) between opening the Interaction canvas and loading the Custom Activity. 
 
-* Configuration
+1. Clone repository locally
+2. Install the Heroku toolbelt +wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh+
+3. Install the Heroku environment variable plugin with +heroku plugins:install git://github.com/ddollar/heroku-config.git+
+4. Run +bundle install+ to update local bundle
+5. Run +heroku apps:create+ to create app
+6. Configure .env as described above
+7. Run +heroku config:push+ to push enviroment variables
+8. Run +git push master heroku+ to push app to Heroku
+9. Run +heroku run rake db:migrate+ to migrate database
 
-* Database creation
+== Data Structure in ExactTarget
 
-* Database initialization
+* Subscriber Key should be enabled in the account.
 
-* How to run the test suite
+* Master Data Extension set as a One to One relationship and Use As Root in Attribute Group. Must have a text filed named SubscriberKey and a Email Address field named EmailAddress. Should be marked sendable on SubscriberKey relates to subscribers on Subsciber Key. Make sure the Data Extension's EmailAddress field is included in Channel Address Order inside of Contact Builder. This data extension is used as a master data extension that contains base information for creating contacts.
 
-* Services (job queues, cache servers, search engines, etc.)
+* Trigger Data Extension is a as the Event Source for the Interaction's Trigger Event. Should have a text field named SubscriberKey, an Email Address field named EmailAddress and a text field named Value. Should be marked sendabled on SubscriberKey relates to subscirbers on Subscriber Key. The events will be fired to this data extension. It does not need to be part of a Attribute Group.
 
-* Deployment instructions
+== Interaction Design
 
-* ...
+0. Trigger Event should target the Trigger Data Extenion. Check for SubscriberKey is not null on the Master Data Extension. Be sure not to use Email Demographics Subscriber Key, because when the trigger event is fired, the contact may not be created yet.
 
+1. Email Send Event: this ensures the contact is created. At this time, entering an interaction is not enough for a contact to be created from the Master Data Extension and Trigger Data Extension. Sending the email actually creates the contact on the necessary ExactTarget tables.  
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+2. Wait 5 minutes: this gives ample time for the contact creation process to complete before the Custom Activity runs.
+
+3. Custom Activity: configure the custom activity here
+
+== Usage
+
+1. Access the console page at http://your-app-1337.herokuapp.com/console
+
+2. Enter in a Contactkey and Email Address and click fired
+
+3. Wait ~5 minutes to see list populate with a record of the Custom Activity firing
+
