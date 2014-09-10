@@ -1,7 +1,5 @@
-<%= form_tag("console/fire", method: "post") do %>
-	<%= label_tag(:k, "Contactkey:") %>
-	<%= text_field_tag(:k) %>
-	<%= label_tag(:e, "Email Address:") %>
-	<%= text_field_tag(:e) %>
-	<%= submit_tag("Fire Event") %>
+<%= bootstrap_form_tag url: "console/fire", method: "post" do |f| %>
+	<%= f.text_field :k, label: "Contact Key", placeholder: "enter contact key" %>
+	<%= f.email_field :e, label: "Email Address", placeholder: "enter email address" %>
+	<%= f.submit :Trigger %>
 <% end %>
