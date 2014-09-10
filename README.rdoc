@@ -5,11 +5,10 @@
 Register an App through the App Center at code.exacttarget.com. Create a custom activity inside of the App. At this time ExactTarget, must enable your Code@ account to be able to access Custom Activities in the App Center.  
 
 Create a .env file in the root of the project to store configuration variables with the following:
-
-	CLIENT_ID=Client ID of your app
-	CLIENT_SECRET=Client Secret of your app
-	MASTER_DE_KEY=External Key for Master Data Extension
-	EVENT_DEFINITION_KEY=Event Definition Key for Trigger Event associated with the Interaction
+  CLIENT_ID=Client ID of your app
+  CLIENT_SECRET=Client Secret of your app
+  MASTER_DE_KEY=External Key for Master Data Extension
+  EVENT_DEFINITION_KEY=Event Definition Key for Trigger Event associated with the Interaction
 	
 For best results host the app on Heroku. If another host is used, it must be certified with an SSL cert. Not hosting on Heroku may result in a delay (~3 minutes) between opening the Interaction canvas and loading the Custom Activity. 
 
