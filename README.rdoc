@@ -13,14 +13,14 @@ Create a .env file in the root of the project to store configuration variables w
 For best results host the app on Heroku. If another host is used, it must be certified with an SSL cert. Not hosting on Heroku may result in a delay (~3 minutes) between opening the Interaction canvas and loading the Custom Activity. 
 
 1. Clone repository locally
-2. Install the Heroku toolbelt +wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh+
-3. Install the Heroku environment variable plugin with +heroku plugins:install git://github.com/ddollar/heroku-config.git+
-4. Run +bundle install+ to update local bundle
-5. Run +heroku apps:create+ to create app
+2. Install the Heroku toolbelt +\wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh+
+3. Install the Heroku environment variable plugin with +\heroku plugins:install git://github.com/ddollar/heroku-config.git+
+4. Run +\bundle install+ to update local bundle
+5. Run +\heroku apps:create+ to create app
 6. Configure .env as described above
-7. Run +heroku config:push+ to push enviroment variables
-8. Run +git push master heroku+ to push app to Heroku
-9. Run +heroku run rake db:migrate+ to migrate database
+7. Run +\heroku config:push+ to push enviroment variables
+8. Run +\git push master heroku+ to push app to Heroku
+9. Run +\heroku run rake db:migrate+ to migrate database
 
 == Data Structure in ExactTarget
 
