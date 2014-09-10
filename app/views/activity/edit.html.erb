@@ -109,7 +109,7 @@
 		//toJbPayload['metaData'].icon = '../jb-icon2.png';
 		
 		var value = $("#select1").val();
-		toJbPayload['arguments'].execute.inArguments.message = value;
+		toJbPayload['arguments'].execute.inArguments.baz = value;
 		toJbPayload['metaData'].isConfigured  = true;
 		console.log(toJbPayload);
         connection.trigger('updateActivity', toJbPayload);
