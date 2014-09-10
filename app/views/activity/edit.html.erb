@@ -96,20 +96,8 @@
     
     
     function save() {
-    	//toJbPayload['arguments'] = toJbPayload['arguments'] || {};
-    	//toJbPayload['configurationArguments'] = toJbPayload['configurationArguments'] || {};
-    	//toJbPayload['metaData'] = toJbPayload['metaData'] || {};
-		//toJbPayload['configurationArguments'].applicationExtensionKey = "awagonerCatsEye";
-		//toJbPayload['configurationArguments'].applicationExtensionEndpointUrl = "https://damp-castle-6031.herokuapp.com/activity";
-		//toJbPayload['lang'] = toJbPayload['lang'] || {};
-		//toJbPayload['edit'] = toJbPayload['edit'] || {};
-		//toJbPayload.workflowApiVersion = 'REST';
-		//toJbPayload.type = '1.0';
-		//toJbPayload['arguments'].execute.inArguments.message = $("#select1").val();
-		//toJbPayload['metaData'].icon = '../jb-icon2.png';
-		
-		var value = $("#select1").val();
-		toJbPayload['arguments'].execute.inArguments.baz = value;
+		//var value = $("#select1").val();
+		//toJbPayload['arguments'].execute.inArguments.baz = value;
 		toJbPayload['metaData'].isConfigured  = true;
 		console.log(toJbPayload);
         connection.trigger('updateActivity', toJbPayload);
